@@ -2,7 +2,6 @@
 
 include "connection.php";
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,55 +15,8 @@ include "connection.php";
 <link rel="stylesheet" href="assets/css/style.css">
 <title>Homepage</title>
 </head>
-  <div class="overflow-auto" style="">
 <body>
-  <nav class="navbar navbar-expand-lg navbar-primary bg-light">
-
-  <a href="#" class="navbar-brand">
-    <h1 class="h3">EEM site</h1>
-  </a>
-
-  <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNav">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse"id="mainNav">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a href="#" class="nav-link">Posts</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link">Add Post</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link">Contact Us</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link">Help</a>
-      </li>
-    </ul> 
-
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a href="#" class="nav-link">Site Map</a>
-      </li>
-      <li class="nav-item">
-        <button class="btn btn-outline-danger rounded-pill  font-weight-bold" style="width:90px;">Join Us</button>
-      </li>
-    </ul> 
-  </div>    
-  </nav>
-
-  <div class="bg-light">
-  <header>
-    <div class="jumbotron jumbotron-fluid">   
-      <div class="float-left inline ml-3"><h2 class="h5 text-info"><i class="fas fa-book mr-2"></i>English Education Material Website</h2></div>
-      <div class="text-center">
-     <input type="text" placeholder="search bar" name="searchbar" id="" class="col-6"><a class="btn btn-primary btn-sm ml-2" href="item.php" title="search"><i class="fas fa-search mr-2"></i>Search</a><a class="btn btn-primary btn-sm ml-2" href="cart.php" title="cart"><i class="fas fa-shopping-cart mr-2"></i>Cart</a>
-      </div>
-    </div>
-  </header>
-
+ <?php include "adminMenu.php" ?>
   <main>
     
     <div class="container float-left col-3">
@@ -86,62 +38,71 @@ include "connection.php";
             </div>
         </div>  
 
+      <div class="container mt-3">
+        <div class="card" style="form-control">
+          <img src="img/pexels-negative-space-34075.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              
+            </div>
+      </div>
+    </div>
+
         </div>
       </div>
     </div>
   
-    <div class="container">
+    <div class="container col-12">
       <div class="card">
         <div class="card-deck mx-3 my-3">
         
         <div class="card">
-        <img src="" class="card-img-top" alt="book">
+        <img src="img/51eDydQqQWL.jpg" class="card-img-top" alt="text with cd">
           <div class="card-body">
-            <div class="card-title">cd</div>
+            <div class="card-title">text with cd</div>
             <div class="card-text"></div>
           </div>
         </div>  
                     
         <div class="card">
-        <img src="" class="card-img-top" alt="book">
+        <img src="img/51EYuDsTxSL.jpg" class="card-img-top" alt="text with cd">
           <div class="card-body">
-              <div class="card-title">cd</div>
+              <div class="card-title">text with cd</div>
               <div class="card-text"></div>
             </div>
         </div>    
 
         <div class="card">
-        <img src="" class="card-img-top" alt="book">
+        <img src="img/51pAIDTIq0L.jpg" class="card-img-top" alt="text with cd">
           <div class="card-body">
-              <div class="card-title">cd</div>
+              <div class="card-title">text with cd</div>
             </div>
         </div>    
 
         <div class="card">
-        <img src="" class="card-img-top" alt="book">
+        <img src="img/61hXOuBqF2L.jpg" class="card-img-top" alt="text with cd">
           <div class="card-body">
-              <div class="card-title">cd</div>
+              <div class="card-title">text with cd</div>
             </div>
         </div>    
 
         <div class="card">
-        <img src="" class="card-img-top" alt="book">
+        <img src="img/61UE67UlryL.jpg" class="card-img-top" alt="text with cd">
           <div class="card-body">
-              <div class="card-title">cd</div>
+              <div class="card-title">text with cd</div>
             </div>
         </div>    
 
         <div class="card">
-        <img src="" class="card-img-top" alt="book">
+        <img src="img/A1t7efv3mjL.jpg" class="card-img-top" alt="text with cd">
           <div class="card-body">
-              <div class="card-title">cd</div>
+              <div class="card-title">text with cd</div>
             </div>
         </div>   
 
         <div class="card">
-        <img src="" class="card-img-top" alt="book">
+        <img src="img/51gxtMazhTL.jpg" class="card-img-top" alt="text with cd">
           <div class="card-body">
-              <div class="card-title">cd</div>
+              <div class="card-title">text with cd</div>
             </div>
         </div>    
         
@@ -149,74 +110,77 @@ include "connection.php";
       </div>
     </div>                   
 
-    <div class="container my-3">
+    <div class="container col-12 my-3">
       <div class="card">
         <div class="card-deck mx-3 my-3">
 
           <div class="card">
-          <img src="" class="card-img-top" alt="...">
+          <img src="img/51IH3anyryL.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-            <div class="card-title">book</div>
+            <div class="card-title">text</div>
             </div>
           </div>
 
           <div class="card">
-          <img src="" class="card-img-top" alt="...">
+          <img src="img/61gvKAuVLfL.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-            <div class="card-title">book</div>
+            <div class="card-title">text</div>
             </div>
           </div>
 
           <div class="card">
-          <img src="" class="card-img-top" alt="...">
+          <img src="img/61qv83A839L.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-            <div class="card-title">book</div>
+            <div class="card-title">text</div>
             </div>
           </div>
 
           <div class="card">
-          <img src="" class="card-img-top" alt="...">
+          <img src="img/81eyp3ZikyL.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-            <div class="card-title">book</div>
+            <div class="card-title">text</div>
             </div>
           </div>
 
           <div class="card">
-          <img src="" class="card-img-top" alt="...">
+          <img src="img/81K+KhRUkQL.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-            <div class="card-title">book</div>
+            <div class="card-title">text</div>
             </div>
           </div>
 
           <div class="card">
-          <img src="" class="card-img-top" alt="...">
+          <img src="img/615+qv0jnyL.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-            <div class="card-title">book</div>
+            <div class="card-title">text</div>
             </div>
           </div>
 
           <div class="card">
-          <img src="" class="card-img-top" alt="...">
+          <img src="img/81bkoVDQNNL.jpg" class="card-img-top" alt="...">
             <div class="card-body">
-            <div class="card-title">book</div>
+            <div class="card-title">text</div>
             </div>
           </div>
 
         </div>
       </div>
     </div>
-
-    <div class="container my-3">
+<!-- 
+    <div class="container my-3 mr-5 col-3 w-75">
       <div class="card border" style="form-control">
-      <div class="card-body">
-        advertisement
+        <div class="card-deck mx-3 my-3">
+          <img src="img/pexels-negative-space-34075.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              advertisement
+            </div>
+        </div>
       </div>
-      </div>
-    </div>
+    </div> -->
 
   </main>
 
-  <footer class="bg-info text-center w-100" style="margin-top: 200px;">
+  <footer class="bg-info text-center w-100" style="margin-top: 50px;">
     <div class="footer-content">
       <small style="line-height:100px;">www.English Education Material.com</small>
     </div>
