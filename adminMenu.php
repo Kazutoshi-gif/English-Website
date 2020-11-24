@@ -1,7 +1,7 @@
 <div class="overflow-auto" style="">
   <nav class="navbar navbar-expand-lg navbar-primary bg-light">
 
-  <a href="#" class="navbar-brand">
+  <a href="homepage.php" class="navbar-brand">
     <h1 class="h3">EEM site</h1>
   </a>
 
@@ -12,10 +12,7 @@
   <div class="collapse navbar-collapse"id="mainNav">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a href="#" class="nav-link">Posts</a>
-      </li>
-      <li class="nav-item">
-        <a href="#" class="nav-link">Add Post</a>
+        <a href="#" class="nav-link">Wish List</a>
       </li>
       <li class="nav-item">
         <a href="#" class="nav-link">Contact Us</a>
@@ -30,7 +27,7 @@
         <a href="#" class="nav-link">Site Map</a>
       </li>
       <li class="nav-item">
-        <button class="btn btn-outline-danger rounded-pill  font-weight-bold" style="width:90px;">Join Us</button>
+        <a href="admin.php" class="btn btn-outline-danger rounded-pill  font-weight-bold" style="width:90px;">Admin</a>
       </li>
     </ul> 
   </div>    

@@ -1,6 +1,28 @@
 <?php
-
+session_start();
 include "connection.php";
+
+function getCd(){
+
+  $sql = "SELECT id,title,cost FROM text_and_cd";
+  $conn = connection();
+  if ($result = $conn->query($sql)) {
+    return $result;
+  } else {
+    die("Error retrieving posts: " . $conn->error);
+  }
+}
+
+function getBook(){
+
+  $sql = "SELECT id,title,cost FROM `text`";
+  $conn = connection();
+  if ($result = $conn->query($sql)) {
+    return $result;
+  } else {
+    die("Error retrieving posts: " . $conn->error);
+  }
+}
 
 ?>
 <!DOCTYPE html>
@@ -38,14 +60,14 @@ include "connection.php";
             </div>
         </div>  
 
-      <div class="container mt-3">
-        <div class="card" style="form-control">
-          <img src="img/pexels-negative-space-34075.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              
-            </div>
-      </div>
-    </div>
+          <div class="container mt-3">
+            <div class="card" style="form-control">
+              <img src="img/pexels-negative-space-34075.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  
+                </div>
+          </div>
+        </div>
 
         </div>
       </div>
@@ -54,118 +76,52 @@ include "connection.php";
     <div class="container col-12">
       <div class="card">
         <div class="card-deck mx-3 my-3">
-        
+          <?php
+          $result = getCd();
+          if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+          ?>
         <div class="card">
-        <img src="img/51eDydQqQWL.jpg" class="card-img-top" alt="text with cd">
           <div class="card-body">
-            <div class="card-title">text with cd</div>
-            <div class="card-text"></div>
+            <div class="card-title"><?= $row['title'] ?></div>
+            <div class="card-text"><i class="fas fa-yen-sign"></i><?= $row['cost'] ?></div>
+            <div class="card-text"><a href="item.php?cdid=<?= $row['id'] ?>">view this item</a></div>
           </div>
-        </div>  
-                    
-        <div class="card">
-        <img src="img/51EYuDsTxSL.jpg" class="card-img-top" alt="text with cd">
-          <div class="card-body">
-              <div class="card-title">text with cd</div>
-              <div class="card-text"></div>
-            </div>
-        </div>    
+        </div> 
 
-        <div class="card">
-        <img src="img/51pAIDTIq0L.jpg" class="card-img-top" alt="text with cd">
-          <div class="card-body">
-              <div class="card-title">text with cd</div>
-            </div>
-        </div>    
-
-        <div class="card">
-        <img src="img/61hXOuBqF2L.jpg" class="card-img-top" alt="text with cd">
-          <div class="card-body">
-              <div class="card-title">text with cd</div>
-            </div>
-        </div>    
-
-        <div class="card">
-        <img src="img/61UE67UlryL.jpg" class="card-img-top" alt="text with cd">
-          <div class="card-body">
-              <div class="card-title">text with cd</div>
-            </div>
-        </div>    
-
-        <div class="card">
-        <img src="img/A1t7efv3mjL.jpg" class="card-img-top" alt="text with cd">
-          <div class="card-body">
-              <div class="card-title">text with cd</div>
-            </div>
-        </div>   
-
-        <div class="card">
-        <img src="img/51gxtMazhTL.jpg" class="card-img-top" alt="text with cd">
-          <div class="card-body">
-              <div class="card-title">text with cd</div>
-            </div>
-        </div>    
-        
+          <?php
+               }
+            } 
+          ?>             
         </div>                    
       </div>
     </div>                   
 
-    <div class="container col-12 my-3">
+    <div class="container col-12">
       <div class="card">
         <div class="card-deck mx-3 my-3">
-
-          <div class="card">
-          <img src="img/51IH3anyryL.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-            <div class="card-title">text</div>
-            </div>
+          <?php
+          $result = getBook();
+          if ($result->num_rows > 0) {
+              while ($row = $result->fetch_assoc()) {
+          ?>
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title"><?= $row['title'] ?></div>
+            <div class="card-text"><i class="fas fa-yen-sign"></i><?= $row['cost'] ?></div>
+            <div class="card-text"><a href="item.php?bookid=<?= $row['id'] ?>">view this item</a></div>
           </div>
+        </div> 
 
-          <div class="card">
-          <img src="img/61gvKAuVLfL.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-            <div class="card-title">text</div>
-            </div>
-          </div>
-
-          <div class="card">
-          <img src="img/61qv83A839L.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-            <div class="card-title">text</div>
-            </div>
-          </div>
-
-          <div class="card">
-          <img src="img/81eyp3ZikyL.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-            <div class="card-title">text</div>
-            </div>
-          </div>
-
-          <div class="card">
-          <img src="img/81K+KhRUkQL.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-            <div class="card-title">text</div>
-            </div>
-          </div>
-
-          <div class="card">
-          <img src="img/615+qv0jnyL.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-            <div class="card-title">text</div>
-            </div>
-          </div>
-
-          <div class="card">
-          <img src="img/81bkoVDQNNL.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-            <div class="card-title">text</div>
-            </div>
-          </div>
-
-        </div>
+          <?php
+               }
+            } 
+          ?>             
+        </div>                    
       </div>
-    </div>
+    </div>                   
+
+   
 <!-- 
     <div class="container my-3 mr-5 col-3 w-75">
       <div class="card border" style="form-control">
