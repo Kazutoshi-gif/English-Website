@@ -1,17 +1,5 @@
 <?php
-function Createdetails($firstName, $lastName, $address, $contactNumber, $emailAddress, $postCode, $Date){
-    $sql = "INSERT INTO customer_information (firstName,lastName,`address`,contactNumber,emaileAddress,postCode,`Date`) VALUES ('$firstName', '$lastName','$address''$contactNumber','$emailAddress','$postCode','$Date')";
-    $conn = connection();
-    }
-    if (isset($_POST['btnRegister'])) {
-      $firstName = $_POST['firstName'];
-      $lastName = $_POST['lastName'];
-      $address = $_POST['address'];
-      $contactNumber = $_POST['contactNumber'];
-      $emailAddress = $_POST['emailAddress'];
-      $postCode= $_POST['postCode'];
-      $Date= $_POST['Date'];
-    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,29 +1,9 @@
 <?php
-session_start();
-include "connection.php";
+include "../classes/connection.php";
+include_once "../classes/user.php";
 
-function getCd(){
-
-  $sql = "SELECT id,title,cost FROM text_and_cd";
-  $conn = connection();
-  if ($result = $conn->query($sql)) {
-    return $result;
-  } else {
-    die("Error retrieving posts: " . $conn->error);
-  }
-}
-
-function getBook(){
-
-  $sql = "SELECT id,title,cost FROM `text`";
-  $conn = connection();
-  if ($result = $conn->query($sql)) {
-    return $result;
-  } else {
-    die("Error retrieving posts: " . $conn->error);
-  }
-}
-
+$items = new User;
+$itemList = $items->getItems();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,53 +53,51 @@ function getBook(){
       </div>
     </div>
   
-    <div class="container col-12">
+    <div class="container col-12 horizontal-scrollable">
       <div class="card">
         <div class="card-deck mx-3 my-3">
           <?php
-          $result = getCd();
-          if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
+          while ($itemDetails = $itemList->fetch_assoc()){
           ?>
-        <div class="card">
-          <div class="card-body">
-            <div class="card-title"><?= $row['title'] ?></div>
-            <div class="card-text"><i class="fas fa-yen-sign"></i><?= $row['cost'] ?></div>
-            <div class="card-text"><a href="item.php?cdid=<?= $row['id'] ?>">view this item</a></div>
+        
+          <div class="card">
+            <div class="card-body">
+              <img src="../img/<?= $itemDetails['img']?>"alt="" class="card-img-top">
+              <div class="card-title text-truncate"><?= $itemDetails['title'] ?></div>
+              <div class="card-text"><i class="fas fa-yen-sign"></i><?= $itemDetails['cost'] ?></div>
+              <div class="card-text"><a href="item.php?id=<?= $itemDetails['id'] ?>">view this item</a></div>
           </div>
         </div> 
-
+        <br>
           <?php
-               }
             } 
-          ?>             
+          ?>         
+               
         </div>                    
       </div>
     </div>                   
 
-    <div class="container col-12">
+    <!-- <div class="container col-12">
       <div class="card">
         <div class="card-deck mx-3 my-3">
-          <?php
-          $result = getBook();
-          if ($result->num_rows > 0) {
-              while ($row = $result->fetch_assoc()) {
+        <?php
+          while ($itemDetails = $itemList->fetch_assoc()){
           ?>
         <div class="card">
           <div class="card-body">
-            <div class="card-title"><?= $row['title'] ?></div>
-            <div class="card-text"><i class="fas fa-yen-sign"></i><?= $row['cost'] ?></div>
-            <div class="card-text"><a href="item.php?bookid=<?= $row['id'] ?>">view this item</a></div>
+            <img src="../img/<?= $itemDetails['img']?>"alt="" class="card-img-top">
+            <div class="card-title text-truncate"><?= $itemDetails['title'] ?></div>
+            <div class="card-text"><i class="fas fa-yen-sign"></i><?= $itemDetails['cost'] ?></div>
+            <div class="card-text"><a href="item.php?bookid=<?= $itemDetails['id'] ?>">view this item</a></div>
           </div>
         </div> 
 
           <?php
-               }
             } 
           ?>             
         </div>                    
       </div>
-    </div>                   
+    </div>                    -->
 
    
 <!-- 

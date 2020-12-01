@@ -1,31 +1,12 @@
 <?php
-session_start();
-include "connection.php";
+include "../classes/connection.php";
+include_once "../classes/user.php";
 
-if($ID=$_GET['cdid']){
-  function getMaterial($ID){
-    $sql = "SELECT cost,title,author,publisher,materials FROM text_and_cd WHERE text_and_cd.id = $ID";
-    $conn = connection();
-    if ($result = $conn->query($sql)) {
-      return $result->fetch_assoc();
-    } else {
-      die("Error retrieving : " . $conn->error);
-    }
-  }
-}elseif($ID=$_GET['bookid']){
-  function getMaterial($ID){
-    $sql = "SELECT cost,title,author,publisher,materials FROM `text` WHERE `text`.id = $ID";
-    $conn = connection();
-    if ($result = $conn->query($sql)) {
-      return $result->fetch_assoc();
-    } else {
-      die("Error retrieving: " . $conn->error);
-    }
-  }
-}
+$item = new User;
+$itemID=@$_GET['id'];
+$itemList=$item->getCartItem($itemID);
 
-  $row = getMaterial($ID);
-  ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,12 +25,14 @@ if($ID=$_GET['cdid']){
  <div class="container col-12">
     <div class="card">
       <div class="card-body">
+        <?php
+          while ($itemDetails = $itemList->fetch_assoc()){
+          ?>
 
         <div class="row float-right"> 
-
           <div class="container border border-dark col-6 mr-3 text-center">
-            <div class="number" name="cost"> 
-              <h1 class="h4"><?= $row['cost']?></h1>
+            <div class="number"> 
+              <h1 class="h4"><?= $itemDetails['cost']?></h1>
             </div>
           </div>
 
@@ -58,31 +41,32 @@ if($ID=$_GET['cdid']){
             Remove
             </a>
           </div>
-
         </div>
 
         <div class="col-1 float-left">
-          <img src="img/51gxtMazhTL.jpg" class="card-img-top" alt="text with cd">
+        <img src="../img/<?= $itemDetails['img']?>" class="card-img-top" alt="text with cd">
         </div>
 
         <div class="container border-bottom border-dark col-5 float-left">
-          <div class="text font-weight-bolder" name="title">
-          <h3 class="h6"><?= $row['title']?></h3>
+          <div class="text font-weight-bolder">
+          <h3 class="h6"><?= $itemDetails['title']?></h3>
           </div>
         </div>
 
         <div class="container border-bottom border-dark col-5 float-left">
-          <div class="text" name="author">
-          <?= $row['author']?>
+          <div class="text">
+          <?= $itemDetails['author']?>
           </div>
-          <div class="text" name="publisher">
-          <?= $row['publisher']?>
+          <div class="text">
+          <?= $itemDetails['publisher']?>
           </div>
-          <div class="text" name="materials">
-          <?= $row['cost']?>
+          <div class="text">
+          <?= $itemDetails['cost']?>
           </div>
         </div>
-
+          <?php
+              } 
+            ?>           
       </div>
     </div>
   </div>
@@ -93,7 +77,7 @@ if($ID=$_GET['cdid']){
         <div class="container">
           <div class="row">
             <div class="col-6">
-              <a href="" class="btn btn-outline-warning">
+              <a href="" class="btn btn-outline-warning<?= $itemDetails['id']?>">
               Checkout with Paypay
               </a>
             </div>

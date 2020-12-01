@@ -1,29 +1,12 @@
 <?php
-session_start();
-include "connection.php";
+include "../classes/connection.php";
+include_once "../classes/user.php";
 
-if($ID=$_GET['cdid']){
-  function getMaterial($ID){
-    $sql = "SELECT cost,title,author,publisher,materials,information FROM text_and_cd WHERE text_and_cd.id = $ID";
-    $conn = connection();
-    if ($result = $conn->query($sql)) {
-      return $result->fetch_assoc();
-    } else {
-      die("Error retrieving : " . $conn->error);
-    }
-  }
-}elseif($ID=$_GET['bookid']){
-  function getMaterial($ID){
-    $sql = "SELECT cost,title,author,publisher,materials,information FROM `text` WHERE `text`.id = $ID";
-    $conn = connection();
-    if ($result = $conn->query($sql)) {
-      return $result->fetch_assoc();
-    } else {
-      die("Error retrieving: " . $conn->error);
-    }
-  }
-}
-  $row = getMaterial($ID);
+
+$item = new User;
+$itemID=@$_GET['id'];
+$itemDetails = $item->getItem($itemID);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,10 +26,12 @@ if($ID=$_GET['cdid']){
   <div class="container col-5 float-right mr-4">
     <div class="card">
       <div class="card-body">
+    <form action="../actions/newItem.php" method="POST">
 
         <div class="container border-bottom border-dark">
           <div class="number" name="cost">
-            <h1 class="h3"><i class="fas fa-yen-sign"></i><?= $row['cost']?></h1>
+          <input type="hidden" name="cost" value="<?= $itemDetails['cost']?>">
+            <h1 class="h3"><i class="fas fa-yen-sign"></i><?= $itemDetails['cost']?></h1>
           </div>
         </div>
 
@@ -57,15 +42,15 @@ if($ID=$_GET['cdid']){
         </div>
 
         <div class="container text-center mt-3 mb-2">
-          <a class="btn btn-warning rounded-pill w-50" href="cart.php?cdid&bookid=<?= $row['id'] ?>">
+          <button class="btn btn-warning rounded-pill w-50" type="submit" href="cartList.php" name="id" value="<?= $itemDetails['id'] ?>">
           Add to Cart
-          </a>
+          </button>
         </div>
-
+        <!-- value="<?= $itemDetails['id'] ?>" -->
         <div class="container text-center">
-          <a class="btn btn-outline-dark rounded-pill w-50 mt-3"href="whisList.php">
+          <button class="btn btn-outline-dark rounded-pill w-50 mt-3"type="submit"href="whisList.php?id<?= $itemDetails['id'] ?>">
           Add to Whish list
-          </a>
+          </button>
         </div>
         
       </div>
@@ -75,35 +60,39 @@ if($ID=$_GET['cdid']){
   <div class="container col-6 my-3 ml-5">
     <div class="card">
       <div class="card-body">
-
         <div class="col-4 float-left">
-          <img src="img/51gxtMazhTL.jpg" class="card-img-top" alt="text with cd">
+        <input type="hidden" name="img" value="<?= $itemDetails['img']?>">
+          <img src="../img/<?= $itemDetails['img']?>" class="card-img-top" alt="text with cd">
         </div>
-
+        
           <div class="container border-bottom border-dark col-8 float-right">
-            <div class="text font-weight-bolder" name="title">
-            <h3 class="h5"><?= $row['title']?></h3>
+            <div class="text font-weight-bolder">
+            <input type="hidden"name="title"  value="<?= $itemDetails['title']?>">
+            <h3 class="h5"><?= $itemDetails['title']?></h3>
             </div>
           </div>
 
           <div class="container border-bottom border-dark col-8 float-right">
-            <div class="text" name="author">
-            <?= $row['author']?>
+            <div class="text">
+            <input type="hidden" name="author" value="<?= $itemDetails['author']?>">
+            <?= $itemDetails['author']?>
             </div>
-            <div class="text" name="publisher">
-            <?= $row['publisher']?>
+            <div class="text">
+            <input type="hidden"name="publisher"  value="<?= $itemDetails['publisher']?>">
+            <?= $itemDetails['publisher']?>
             </div>
-            <div class="text" name="materials">
-            <?= $row['materials']?>
+            <div class="text">
+            <input type="hidden"name="materials"  value="<?= $itemDetails['materials']?>">
+            <?= $itemDetails['materials']?>
             </div>
           </div>
 
+        </form>
           <div class="container">
-            <div class="textarea" name="information">
-            <?= $row['information']?>
+            <div class="textarea">
+            <?= $itemDetails['information']?>
             </div>
           </div>
-
       </div>
     </div>
   </div>

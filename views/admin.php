@@ -1,33 +1,12 @@
 <?php
-session_start();
+include "../classes/connection.php";
+include_once "../classes/admin.php";
 
-$id=$_GET['id'];
-function uploadPhoto($imageName,$id)
-{
-   $sql = "UPDATE `text` SET img='$imageName' WHERE `text`.id = $id";
-
-   $conn = connection();
-
-   $destination = "img/" . basename($imageName);
-
-   if ($conn->query($sql)) {
-      if (move_uploaded_file($_FILES['img']['tmp_name'], $destination)) {
-         header("refresh: 0");
-      } else {
-         die("Error moving the photo: " . $conn->error);
-      }
-   } else {
-      die("Error uploading photo: " . $conn->error);
-   }
-}
-
-if (isset($_POST['btnUpdatePhoto'])) {
-  $imageName = $_FILES['img'];
-
-  uploadPhoto($imageName,$id);
-}
-
+$item = new Admin;
+$itemList = $item->getItems();
+// $selectitemList = $selectitem->selectItems($itemID);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,12 +22,12 @@ if (isset($_POST['btnUpdatePhoto'])) {
 <body>
 <?php include "adminMenu.php" ?>
 
-  <div class="container col-5 float-right mr-4">
+  <div class="container col-6 float-right mr-4">
     <div class="card">
       <div class="card-body">
 
         <div class="container text-right">
-          <a class="btn btn-outline-info w-25 col-3" href="cart.php?=<?= $row['id'] ?>">
+          <a class="btn btn-outline-info w-25 col-3" href="newItem.php">
           <i class="fas fa-plus"></i> New Item
           </a>
         </div>
@@ -58,17 +37,29 @@ if (isset($_POST['btnUpdatePhoto'])) {
             <h2 class="h4"><i class="fas fa-list"></i> Book List</h2>
           </div>
         </div>
-
-        <div class="container mb-2">
+        <div class="container mb-2 border-dark border-bottom">
           <div class="row">
-            <p class="text-left mt-2">book</p>
-              <a class="btn btn-outline-warning rounded-pill w-25" href="cart.php?=<?= $row['id'] ?>">
-              Edit
-              </a>
-              <a class="btn btn-danger rounded-pill w-25 col-2" href="cart.php?=<?= $row['id'] ?>">
-              remove
-              </a>
-        </div>
+        <?php
+          while ($itemDetails = $itemList->fetch_assoc()){
+          // while ($itemDetails = $booksWithCDList->fetch_assoc()){
+          ?>
+            <img src="../img/<?= $itemDetails['img']?>"alt="" class="col-2 width: 50% mt-3">
+            <p class="text mt-3 text-truncate col-3 "><?= $itemDetails['title'] ?></p>             
+            <p class="text mt-3 mr-2 col-2"><?= $itemDetails['author'] ?></p>             
+            <p class="text mt-3 mr-2"><?= $itemDetails['cost'] ?></p>             
+            <div class="">
+            <a class="btn btn-outline-warning ml-6 mr-3 mt-2 hight:40%" href="admin.php?itemID=<?= $itemDetails['id'] ?>">
+            Edit
+            </a>
+            <a class="btn btn-outline-danger ml-6 mr-3 mt-3 mb-2" href="remove.php?itemID=<?= $itemDetails['id'] ?>">
+            remove
+            </a>
+            </div>
+          <?php
+            // } 
+          } 
+          ?>  
+          </div>
         </div>
       </div>
     </div>
@@ -83,43 +74,38 @@ if (isset($_POST['btnUpdatePhoto'])) {
           </div>
         </div>
           <div class="col-4 float-left">
-              <img src="img/<?= $row['img'] ?>" alt="<?= $row['img'] ?>" class="card-img-top" alt="text with cd">
+              <img src="img/<?= $row['img'] ?>" alt="" class="card-img-top" alt="text with cd">
           </div>
             <form action="" method="post" enctype="multipart/form-data">
               <div class="custom-file small col-3">            
                 <label for="choosePhoto" class="custom-file-label">Choose Photo</label>
                 <input type="file" name="img" id="choosePhoto" class="custom-file-input"required>
               </div>
-
-              <br>
-              <button type="submit" class="btn btn-outline-secondary btn-sm text-truncate col-2 mt-1" name="btnUpdatePhoto" title="Update Photo">Update</button>
-            </form>    
           
-
             <form action="" method="POST">          
             <div class="container text-right">
               <div class="number" name="cost">
-                <h1 class="h4"><input type="number"name="cost" id="" class="col-3" placeholder="cost"value="<?= $row['cost']?>"></h1>
+                <h1 class="h4"><input type="number"name="cost" id="" class="col-3" placeholder="cost"value=""></h1>
               </div>
             </div>
             
             <div class="container col-8 float-right">
               <div class="font-weight-bolder">
-              <h3 class="h5"><input type="text"name="title" id="" class="form-control" placeholder="title"value="<?= $row['title']?>"required></h3>
+              <h3 class="h5"><input type="text"name="title" id="" class="form-control" placeholder="title"value=""required></h3>
               </div>
               <div class="mb-2">
-              <input type="text"name="author" id="" class="form-control" placeholder="author"value="<?= $row['author']?>"required>
+              <input type="text"name="author" id="" class="form-control" placeholder="author"value=""required>
               </div>
               <div class="mb-2">
-              <input type="text"name="publisher" id="" class="form-control" placeholder="publisher"value="<?= $row['publisher']?>"required>
+              <input type="text"name="publisher" id="" class="form-control" placeholder="publisher"value=""required>
               </div>
               <div class="mb-2">
-              <input type="text"name="materials" id="" class="form-control" placeholder="materials"value="<?= $row['materials']?>">
+              <input type="text"name="materials" id="" class="form-control" placeholder="materials"value="">
               </div>
             </div>
 
             <div class="container">
-              <textarea type="text"name="information" id="" class="form-control" placeholder="information"value=""><?= $row['information']?></textarea>
+              <textarea type="text"name="information" id="" class="form-control" placeholder="information"value=""></textarea>
             </div>
             <div class="container text-center">
               <a class="btn btn-outline-info rounded-pill w-25 mt-3"href="whisList.php">
