@@ -10,40 +10,58 @@ class user extends Database{
       }
     }
     
-
     public function getItem($itemID){
         $sql = "SELECT id, cost,title,author,publisher,materials,information,img FROM items WHERE items.id = $itemID";
-        if ($itemID=$this->conn->query($sql)) {
-          return $itemID->fetch_assoc();
-        }else{
-          die("Error retrieving items:".$this->conn->error);
-        }
+      if ($itemID=$this->conn->query($sql)) {
+        return $itemID->fetch_assoc();
+      }else{
+        die("Error retrieving items:".$this->conn->error);
+      }
     }
       
     public function createCartItem($cost, $title, $author, $publisher, $materials, $imageName){
-      $sql = "INSERT INTO cart (cost,title,author,publisher,materials,img) VALUES ('$cost','$title','$author','$publisher','$materials','$imageName')";
-      if($this->conn->query($sql)){
-        $destination = "../img/" . basename($imageName);
-        if(move_uploaded_file($_FILES['image']['tmp_name'], $destination)){
-           header("location:../views/cartList.php");   
-           exit;    
-        }else{
-           die("Error moving photo.");
-        }
+    $sql = "INSERT INTO cart (cost,title,author,publisher,materials,img) VALUES ('$cost','$title','$author','$publisher','$materials','$imageName')";
+    if($this->conn->query($sql)){
+        header("location:../views/cart.php");   
+      }else{
+          die("Error adding cartItems.");
       }
     }
-
-    public function getCartItem($itemID){
-      $sql="SELECT id,cost,title,author,publisher,materials,img  FROM `cart`WHERE `cart`.id=$itemID";
+     public function getCartItem(){
+      $sql="SELECT id,cost,title,author,publisher,materials,img  FROM `cart`";
       if ($itemID = $this->conn->query($sql)){
         return $itemID;
       }else{
         die("Error retrieving items:" . $this->conn->error);
       }
     }
-  
-  // public function createCustomer($firstName, $lastName, $address, $contactNumber, $emailAddress, $postCode, $Date){
-  // $sql = "INSERT INTO customer_information (firstName,lastName,`address`,contactNumber,emaileAddress,postCode,`Date`) VALUES ('$firstName', '$lastName','$address''$contactNumber','$emailAddress','$postCode','$Date')";
+    public function deleteItem($itemID){
+      $sql= "DELETE FROM cart WHERE id=$itemID";
+      if($this->conn->query($sql)){
+         header("location:cart.php");
+         exit;
+      }else{
+         die("error deleting Item:".$this->conn->error);
+      }
+   }
+
+  public function createInformation($firstName, $lastName, $contactNumber, $emailAddress,$address,$postCode, $Date){
+  $sql = "INSERT INTO customer_information (first_name,last_name,contact_number,email_address,`address`,post_code,`date`) VALUES ('$firstName','$lastName','$contactNumber','$emailAddress','$address','$postCode','$Date')";
+  if($this->conn->query($sql)){
+    header("location:../views/complete.php");
+    exit;   
+  }else{
+      die("Error adding Information".$this->conn->error);
+  }
+}
+
+  // public function getCartItem($itemID){
+  //   $sql="SELECT id,cost,title,author,publisher,materials,img  FROM `cart`WHERE `cart`.id=$itemID";
+  //   if ($itemID = $this->conn->query($sql)){
+  //     return $itemID;
+  //   }else{
+  //     die("Error retrieving items:" . $this->conn->error);
+  //   }
   // }
 }
 

@@ -15,6 +15,19 @@ $itemList = $items->getItems();
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
+<style>
+.horizontal-scrollable{
+  width:75%;
+  overflow-x: auto;  
+  /* white-space: nowrap; */
+}
+/* .horizontal-scrollable > .row > .card {
+  width:50%;
+  display: inline-block; 
+  float: none;
+  vertical-align: top;
+} */
+</style>
 <title>Homepage</title>
 </head>
 <body>
@@ -42,7 +55,7 @@ $itemList = $items->getItems();
 
           <div class="container mt-3">
             <div class="card" style="form-control">
-              <img src="img/pexels-negative-space-34075.jpg" class="card-img-top" alt="...">
+              <img src="../img/pexels-negative-space-34075.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                   
                 </div>
@@ -52,69 +65,31 @@ $itemList = $items->getItems();
         </div>
       </div>
     </div>
-  
-    <div class="container col-12 horizontal-scrollable">
-      <div class="card">
-        <div class="card-deck mx-3 my-3">
+   
+    <div class="container col-12">
+      <div class="card horizontal-scrollable">
+        <div class="row flex-row flex-nowrap">
           <?php
           while ($itemDetails = $itemList->fetch_assoc()){
           ?>
-        
-          <div class="card">
-            <div class="card-body">
-              <img src="../img/<?= $itemDetails['img']?>"alt="" class="card-img-top">
-              <div class="card-title text-truncate"><?= $itemDetails['title'] ?></div>
-              <div class="card-text"><i class="fas fa-yen-sign"></i><?= $itemDetails['cost'] ?></div>
-              <div class="card-text"><a href="item.php?id=<?= $itemDetails['id'] ?>">view this item</a></div>
-          </div>
-        </div> 
-        <br>
+            <div class="card col-3 mx-4 my-2">
+              <div class="card-body">
+                <img src="../img/<?= $itemDetails['img']?>"alt="" class="card-img-top width:50%">
+                <div class="card-title text-truncate"><?= $itemDetails['title'] ?></div>
+                <div class="card-text"><i class="fas fa-yen-sign"></i><?= $itemDetails['cost'] ?></div>
+                <div class="card-text"><a href="item.php?id=<?= $itemDetails['id'] ?>">view this item</a></div>
+              </div>
+            </div> 
           <?php
             } 
           ?>         
-               
         </div>                    
       </div>
-    </div>                   
-
-    <!-- <div class="container col-12">
-      <div class="card">
-        <div class="card-deck mx-3 my-3">
-        <?php
-          while ($itemDetails = $itemList->fetch_assoc()){
-          ?>
-        <div class="card">
-          <div class="card-body">
-            <img src="../img/<?= $itemDetails['img']?>"alt="" class="card-img-top">
-            <div class="card-title text-truncate"><?= $itemDetails['title'] ?></div>
-            <div class="card-text"><i class="fas fa-yen-sign"></i><?= $itemDetails['cost'] ?></div>
-            <div class="card-text"><a href="item.php?bookid=<?= $itemDetails['id'] ?>">view this item</a></div>
-          </div>
-        </div> 
-
-          <?php
-            } 
-          ?>             
-        </div>                    
-      </div>
-    </div>                    -->
-
-   
-<!-- 
-    <div class="container my-3 mr-5 col-3 w-75">
-      <div class="card border" style="form-control">
-        <div class="card-deck mx-3 my-3">
-          <img src="img/pexels-negative-space-34075.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
-              advertisement
-            </div>
-        </div>
-      </div>
-    </div> -->
+    </div>           
 
   </main>
 
-  <footer class="bg-info text-center w-100" style="margin-top: 50px;">
+  <footer class="bg-info text-center w-100" style="margin-top: 100px;">
     <div class="footer-content">
       <small style="line-height:100px;">www.English Education Material.com</small>
     </div>

@@ -3,9 +3,7 @@ include "../classes/connection.php";
 include_once "../classes/user.php";
 
 $item = new User;
-$itemID=@$_GET['id'];
-$itemList=$item->getCartItem($itemID);
-
+$itemList=$item->getCartItem();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,22 +20,22 @@ $itemList=$item->getCartItem($itemID);
 <body>
 <?php include "adminMenu.php" ?>
 
- <div class="container col-12">
-    <div class="card">
-      <div class="card-body">
         <?php
           while ($itemDetails = $itemList->fetch_assoc()){
           ?>
+ <div class="container col-12 mb-2">
+    <div class="card">
+      <div class="card-body">
 
         <div class="row float-right"> 
           <div class="container border border-dark col-6 mr-3 text-center">
             <div class="number"> 
-              <h1 class="h4"><?= $itemDetails['cost']?></h1>
+              <h1 class="h5"><i class="fas fa-yen-sign"></i><?= $itemDetails['cost']?></h1>
             </div>
           </div>
 
           <div class="container mt-3 ml-8 text-right">
-            <a href="remove.php" class="btn btn-outline-danger">
+            <a href="cartRemove.php?id=<?= $itemDetails['id'] ?>" class="btn btn-outline-danger">
             Remove
             </a>
           </div>
@@ -60,18 +58,15 @@ $itemList=$item->getCartItem($itemID);
           <div class="text">
           <?= $itemDetails['publisher']?>
           </div>
-          <div class="text">
-          <?= $itemDetails['cost']?>
-          </div>
         </div>
-          <?php
-              } 
-            ?>           
       </div>
     </div>
   </div>
+    <?php
+        } 
+      ?>           
 
- <div class="container col-4 mt-4 float-right">
+ <div class="container col-4 mt-2 float-right mb-3">
     <div class="card">
       <div class="card-body">
         <div class="container">
@@ -92,7 +87,7 @@ $itemList=$item->getCartItem($itemID);
     </div>
  </div>
 
-  <footer class="bg-info text-center w-100" style="position:absolute; bottom: 0;">
+  <footer class="bg-info text-center w-100" style="margin-top:100px;">
     <div class="footer-content">
       <small style="line-height:100px;">www.English Education Material.com</small>
     </div>

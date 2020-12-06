@@ -40,7 +40,7 @@ class Admin extends Database{
    }  
 
    public function selectItem($itemID){  
-      $sql = "SELECT*FROM items WHERE items.id = '$itemID'";
+      $sql = "SELECT*FROM items WHERE id = '$itemID'";
       if($itemID=$this->conn->query($sql)){
          return $itemID->fetch_assoc();         
          exit;    
@@ -49,24 +49,30 @@ class Admin extends Database{
       }      
    }  
 
-   public function updateItem($itemID,$firstName,$lastName,$username){
-      $sql="UPDATE items SET first_name='$firstName', last_name='$lastName',username='$username' WHERE id='$itemID'";
+   public function updateItem($itemID,$title,$author,$information,$publisher,$materials,$cost,$imageName){
+      $sql="UPDATE items SET title='$title',author='$author',information='$information',publisher='$publisher',materials='$materials',cost='$cost',img='$imageName' WHERE id='$itemID'";
+      
       if($this->conn->query($sql)){
-        header("location:../views/dashboard.php");
-        exit;
+         $destination = "../img/" . basename($imageName);
+         if(move_uploaded_file($_FILES['image']['tmp_name'], $destination)){
+            header("location:../views/admin.php");
+            exit;
+         }else{
+            die("Error moving photo.");
+         }
       }else{
         die("Error updating Item:".$this->conn->error);
       }
-    }
+   }
 
-      public function deleteItem($itemID){
-         $sql= "DELETE FROM items WHERE id=$itemID";
-         if($this->conn->query($sql)){
-            header("location:dashboard.php");
-            exit;
-         }else{
-            die("error deleting Item:".$this->conn->error);
-         }
+   public function deleteItem($itemID){
+      $sql= "DELETE FROM items WHERE id=$itemID";
+      if($this->conn->query($sql)){
+         header("location:admin.php");
+         exit;
+      }else{
+         die("error deleting Item:".$this->conn->error);
       }
+   }
 }
 ?>

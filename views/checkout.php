@@ -21,7 +21,7 @@
         <h1 class="h5">Fill in the details below to order</h1>
         </div>
         <div class="card-body">
-        <form action=".php" method="post">
+        <form action="../actions/checkout.php" method="post">
           <label for="name">First Name</label>
             <input type="text" class="form-control" name="firstName" autofocus required>
           <br>

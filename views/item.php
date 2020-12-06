@@ -26,7 +26,7 @@ $itemDetails = $item->getItem($itemID);
   <div class="container col-5 float-right mr-4">
     <div class="card">
       <div class="card-body">
-    <form action="../actions/newItem.php" method="POST">
+    <form action="../actions/newItem.php" method="POST" enctype="multipart/form-data">
 
         <div class="container border-bottom border-dark">
           <div class="number" name="cost">
@@ -42,7 +42,7 @@ $itemDetails = $item->getItem($itemID);
         </div>
 
         <div class="container text-center mt-3 mb-2">
-          <button class="btn btn-warning rounded-pill w-50" type="submit" href="cartList.php" name="id" value="<?= $itemDetails['id'] ?>">
+          <button class="btn btn-warning rounded-pill w-50" type="submit" href="cart.php" name="id" value="<?= $itemDetails['id'] ?>">
           Add to Cart
           </button>
         </div>
@@ -61,7 +61,7 @@ $itemDetails = $item->getItem($itemID);
     <div class="card">
       <div class="card-body">
         <div class="col-4 float-left">
-        <input type="hidden" name="img" value="<?= $itemDetails['img']?>">
+        <input type="hidden" name="image" value="<?= $itemDetails['img']?>">
           <img src="../img/<?= $itemDetails['img']?>" class="card-img-top" alt="text with cd">
         </div>
         
