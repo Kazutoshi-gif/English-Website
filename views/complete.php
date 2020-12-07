@@ -12,7 +12,23 @@
 <title>complete page</title>
 </head>
 <body>
-<?php include "adminMenu.php" ?>
+<?php include "userMenu.php" ?>
+
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+    Finished ordering the Item.
+    </div>
+        <div class="card-body">
+          <div class="card-title">
+          You have completed ordering the Item.
+          You will be receiving the ordering information through the email!
+          Thank you!
+          </div>
+        <img src="../img/pexels-andrea-piacquadio-3781529.jpg" class="card-img-top col-4"alt="...">
+        </div>
+  </div>
+</div>
 
   <footer class="bg-info text-center w-100" style="position:absolute; bottom: 0;">
     <div class="footer-content">

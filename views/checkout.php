@@ -14,7 +14,7 @@
 <title>Checkout page</title>
 </head>
 <body>
-  <?php include "adminMenu.php" ?>
+  <?php include "userMenu.php" ?>
 
     <div class="card w-50 mx-auto mb-4">
       <div class="card-header">
@@ -44,7 +44,7 @@
             <input type="date" class="form-control" name="date" value="" autofocus required>
           <br>
 
-          <button type="submit" name="btnRegister" class="form-control btn btn-outline-info" value="dashboard">Complete Payment</button>
+          <button type="submit" name="btnRegister" class="form-control btn btn-outline-info" value="dashboard" value="">Complete</button>
         </form>
       </div>
     </div>

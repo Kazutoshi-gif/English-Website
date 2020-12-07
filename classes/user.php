@@ -54,17 +54,24 @@ class user extends Database{
       die("Error adding Information".$this->conn->error);
   }
 }
-
-  // public function getCartItem($itemID){
-  //   $sql="SELECT id,cost,title,author,publisher,materials,img  FROM `cart`WHERE `cart`.id=$itemID";
-  //   if ($itemID = $this->conn->query($sql)){
-  //     return $itemID;
-  //   }else{
-  //     die("Error retrieving items:" . $this->conn->error);
-  //   }
-  // }
+public function getInformation($informationID){
+    $sql = "SELECT id, first_name,last_name,contact_number,email_address,`address`,post_code,`date` FROM customer_information WHERE customer_information.id = $informationID";
+  if ($informationID=$this->conn->query($sql)) {
+    return $informationID->fetch_assoc();
+  }else{
+    die("Error retrieving information:".$this->conn->error);
+  }
 }
 
+public function searchItem($findItem){
+  $sql="SELECT id,cost,title,author,publisher,materials,img  FROM items WHERE title LIKE `$findItem`";
+  if ($findItem = $this->conn->query($sql)){
+    return $findItem;
+  }else{
+    die("Error finding items:" . $this->conn->error);
+  }
+}
 
+}
 
 ?>

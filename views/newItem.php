@@ -12,7 +12,7 @@
 <title>newItem.page</title>
 </head>
 <body>
-<?php include "adminMenu.php" ?>
+<?php include "userMenu.php" ?>
   <div class="container col-6 my-3">
     <div class="card">
       <div class="card-body">

@@ -29,7 +29,7 @@ $selectItemList=$item->selectItem($itemID);
 <title>Admin.page</title>
 </head>
 <body>
-<?php include "adminMenu.php" ?>
+<?php include "userMenu.php" ?>
 
   <div class="container col-6 float-right mr-4">
     <div class="card">
@@ -87,7 +87,7 @@ $selectItemList=$item->selectItem($itemID);
           </div>
         </div>
           <div class="col-4 float-left">
-          <form action="../actions/checkout.php" method="post" enctype="multipart/form-data">
+          <form action="../actions/edititem.php" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="<?= $selectItemList['id'] ?>">
               <img src="../img/<?= $selectItemList['img'] ?>" alt="<?= $selectItemList['img'] ?>" class="card-img-top" alt="text with cd">
 

@@ -21,7 +21,7 @@ $itemDetails = $item->getItem($itemID);
 <title>Item page</title>
 </head>
 <body>
-<?php include "adminMenu.php" ?>
+<?php include "userMenu.php" ?>
 
   <div class="container col-5 float-right mr-4">
     <div class="card">
@@ -46,13 +46,13 @@ $itemDetails = $item->getItem($itemID);
           Add to Cart
           </button>
         </div>
-        <!-- value="<?= $itemDetails['id'] ?>" -->
-        <div class="container text-center">
-          <button class="btn btn-outline-dark rounded-pill w-50 mt-3"type="submit"href="whisList.php?id<?= $itemDetails['id'] ?>">
+       
+        <!-- <div class="container text-center">
+          <button class="btn btn-outline-dark rounded-pill w-50 mt-3"type="submit"href="whisList.php?id">
           Add to Whish list
           </button>
         </div>
-        
+         -->
       </div>
     </div>
   </div>

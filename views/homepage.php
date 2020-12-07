@@ -31,7 +31,7 @@ $itemList = $items->getItems();
 <title>Homepage</title>
 </head>
 <body>
- <?php include "adminMenu.php" ?>
+ <?php include "userMenu.php" ?>
   <main>
     
     <div class="container float-left col-3">
@@ -41,14 +41,14 @@ $itemList = $items->getItems();
         <div class="card">
             <div class="card-header">About Us</div>
               <div class="card-body">
-              <div class="card-text">we will be providing you the most effincial english materials</div>
+              <div class="card-text">We will be teaching you the most efficient english education.</div>
           </div>
         </div>  
 
         <div class="card mt-3">
           <div class="card-header">Information of our materials</div>
             <div class="card-body">
-              <div class="card-title">cd</div>
+              <div class="card-title">We will be providing cd or book with cd materials.</div>
               <div class="card-text"></div>
             </div>
         </div>  
@@ -57,8 +57,8 @@ $itemList = $items->getItems();
             <div class="card" style="form-control">
               <img src="../img/pexels-negative-space-34075.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
-                  
-                </div>
+                  Lets Learn English!
+              </div>
           </div>
         </div>
 
@@ -86,15 +86,13 @@ $itemList = $items->getItems();
         </div>                    
       </div>
     </div>           
-
   </main>
 
-  <footer class="bg-info text-center w-100" style="margin-top: 100px;">
+  <footer class="bg-info text-center w-100" style="margin-top: 135px;">
     <div class="footer-content">
       <small style="line-height:100px;">www.English Education Material.com</small>
     </div>
   </footer>
-
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>

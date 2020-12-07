@@ -11,7 +11,7 @@
 <title>Whislist page</title>
 </head>
 <body>
-<?php include "adminMenu.php" ?>
+<?php include "userMenu.php" ?>
 
   <footer class="bg-info text-center w-100" style="position:absolute; bottom: 0;">
     <div class="footer-content">

@@ -2,9 +2,8 @@
 include "../classes/connection.php";
 include_once "../classes/user.php";
 
-$item = new User;
-$itemList=$item->getCartItem();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,14 +14,14 @@ $itemList=$item->getCartItem();
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
-<title>Cart page</title>
+<title>search page</title>
 </head>
 <body>
 <?php include "userMenu.php" ?>
 
-        <?php
-          while ($itemDetails = $itemList->fetch_assoc()){
-          ?>
+<?php
+  while ($itemDetails = $itemList->fetch_assoc()){
+  ?>
  <div class="container col-12 mb-2">
     <div class="card">
       <div class="card-body">
@@ -87,7 +86,7 @@ $itemList=$item->getCartItem();
     </div>
  </div>
 
-  <footer class="bg-info text-center w-100" style="position:absolute; margin-top:100px;">
+<footer class="bg-info text-center w-100" style="position:absolute; bottom: 0;">
     <div class="footer-content">
       <small style="line-height:100px;">www.English Education Material.com</small>
     </div>
