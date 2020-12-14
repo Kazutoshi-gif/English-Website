@@ -42,7 +42,7 @@ $itemList=$item->getCartItem();
         </div>
 
         <div class="col-1 float-left">
-        <img src="../img/<?= $itemDetails['img']?>" class="card-img-top" alt="text with cd">
+          <img src="../img/<?= $itemDetails['img']?>" class="card-img-top" alt="text with cd">
         </div>
 
         <div class="container border-bottom border-dark col-5 float-left">

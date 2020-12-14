@@ -1,13 +1,13 @@
 <?php
 include "../classes/connection.php";
 include_once "../classes/admin.php";
-
 $item = new Admin;
 $itemList = $item->getItems();
 // $selectitemList = $selectitem->selectItems($itemID);
-
+ini_set('display_errors', 0);
 $itemID=@$_GET['id'];
 $selectItemList=$item->selectItem($itemID);
+
 ?>
 
 <!DOCTYPE html>
@@ -91,37 +91,41 @@ $selectItemList=$item->selectItem($itemID);
             <input type="hidden" name="id" value="<?= $selectItemList['id'] ?>">
               <img src="../img/<?= $selectItemList['img'] ?>" alt="<?= $selectItemList['img'] ?>" class="card-img-top" alt="text with cd">
 
-            </div>
+              </div>
               <div class="custom-file small col-3">            
                 <label for="choosePhoto" class="custom-file-label">Choose Photo</label>
                 <input type="file" name="image" id="choosePhoto" class="custom-file-input"required>
               </div>
                 
-            <div class="container text-right">
-              <div class="number" name="cost">
-                <h1 class="h4"><input type="number"name="cost" id="" class="col-3" placeholder="cost" value="<?= $selectItemList['cost'] ?>"required></h1>
+              <div class="container text-right">
+                <div class="number" name="cost">
+                  <h1 class="h4"><input type="number"name="cost" id="" class="col-3" placeholder="cost" value="<?= $selectItemList['cost'] ?>"required></h1>
+                </div>
               </div>
-            </div>
             
-            <div class="container col-8 float-right">
+              <div class="container col-8 float-right">
               <div class="font-weight-bolder">
-              <h3 class="h5"><input type="text"name="title" id="" class="form-control" placeholder="title"value="<?= $selectItemList['title'] ?>"required></h3>
+                <h3 class="h5"><input type="text"name="title" id="" class="form-control" placeholder="title"value="<?= $selectItemList['title'] ?>"required></h3>
               </div>
-              <div class="mb-2">
-              <input type="text"name="author" id="" class="form-control" placeholder="author"value="<?= $selectItemList['author'] ?>"required>
-              </div>
-              <div class="mb-2">
-              <input type="text"name="publisher" id="" class="form-control" placeholder="publisher"value="<?= $selectItemList['publisher'] ?>"required>
-              </div>
-              <div class="mb-2">
-              <input type="text"name="materials" id="" class="form-control" placeholder="materials"value="<?= $selectItemList['materials'] ?>"required>
-              </div>
-            </div>
 
-            <div class="container">
-              <textarea type="text"name="information" id="" class="form-control" placeholder="information"><?= $selectItemList['information'] ?></textarea>
-            </div>
-            <div class="container text-center">
+              <div class="mb-2">
+                <input type="text"name="author" id="" class="form-control" placeholder="author"value="<?= $selectItemList['author'] ?>"required>
+              </div>
+
+              <div class="mb-2">
+                <input type="text"name="publisher" id="" class="form-control" placeholder="publisher"value="<?= $selectItemList['publisher'] ?>"required>
+              </div>
+              
+              <div class="mb-2">
+                <input type="text"name="materials" id="" class="form-control" placeholder="materials"value="<?= $selectItemList['materials'] ?>"required>
+              </div>
+              </div>
+
+              <div class="container">
+                <textarea type="text"name="information" id="" class="form-control" placeholder="information"><?= $selectItemList['information'] ?></textarea>
+              </div>
+
+              <div class="container text-center">
               <button class="btn btn-outline-info rounded-pill w-25 mt-3"type="submit" href="admin.php">
               Save Changes
               </button>
